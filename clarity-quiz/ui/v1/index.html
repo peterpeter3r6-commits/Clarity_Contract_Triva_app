@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clarity Quiz - v1 (Basics)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Clarity Quiz (v1)</h1>
+      <p class="tagline">A minimal UI wired to the <code>quiz</code> smart contract.</p>
+
+      <section class="panel" id="question-panel">
+        <h2>Current Question</h2>
+        <label>
+          Question ID
+          <input id="question-id" type="number" min="0" value="0" />
+        </label>
+        <button id="load-question">Load question</button>
+
+        <div id="question-view" class="hidden">
+          <p><strong>Difficulty:</strong> <span id="question-difficulty"></span></p>
+          <p id="question-prompt"></p>
+          <form id="answer-form">
+            <div id="answer-options"></div>
+            <button type="submit">Submit answer</button>
+          </form>
+        </div>
+      </section>
+
+      <section class="panel" id="stats-panel">
+        <h2>Your Stats</h2>
+        <label>
+          Your principal
+          <input id="user-principal" type="text" placeholder="ST..." />
+        </label>
+        <button id="load-stats">Load stats</button>
+        <div id="stats-view" class="hidden">
+          <p><strong>Score:</strong> <span id="stats-score"></span></p>
+          <p><strong>Questions answered:</strong> <span id="stats-answered"></span></p>
+        </div>
+      </section>
+
+      <section class="panel" id="admin-panel">
+        <h2>Admin Actions (for learning)</h2>
+        <p class="hint">
+          These buttons demonstrate how you would build transactions to call admin
+          functions like <code>set-admin</code>, <code>add-question</code>, and
+          <code>fund-reward-pool</code>. You still need to plug in a Stacks
+          wallet in <code>app.js</code> to actually broadcast them.
+        </p>
+        <button id="example-set-admin">Show example: set-admin</button>
+        <button id="example-add-question">Show example: add-question</button>
+        <button id="example-fund-pool">Show example: fund-reward-pool</button>
+        <pre id="admin-example" class="code-block"></pre>
+      </section>
+
+      <section class="panel" id="log-panel">
+        <h2>Debug log</h2>
+        <pre id="log" class="log"></pre>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>

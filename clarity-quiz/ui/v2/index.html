@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Clarity Quiz - v2 (Improved UX)</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div>
+          <h1>Clarity Quiz</h1>
+          <p>Learn Clarity from beginner to advanced by interacting with the quiz contract.</p>
+        </div>
+        <nav class="difficulty-tabs" aria-label="Difficulty filter">
+          <button data-difficulty="all" class="active">All</button>
+          <button data-difficulty="beginner">Beginner</button>
+          <button data-difficulty="intermediate">Intermediate</button>
+          <button data-difficulty="advanced">Advanced</button>
+        </nav>
+      </header>
+
+      <section class="layout">
+        <section class="column main">
+          <h2 id="question-title">Question</h2>
+          <div class="question-card" aria-live="polite">
+            <div class="question-header">
+              <span class="badge" id="q-difficulty">difficulty</span>
+              <span class="qid">#<span id="q-id">0</span></span>
+            </div>
+            <p id="q-prompt" class="prompt">Pick a difficulty tab and load a question.</p>
+
+            <div id="q-answers" class="answers"></div>
+
+            <form id="q-form" class="actions">
+              <label class="field">
+                Question ID
+                <input id="q-id-input" type="number" min="0" value="0" />
+              </label>
+              <button id="q-load" type="button">Load question</button>
+              <button id="q-submit" type="submit" disabled>Submit answer</button>
+            </form>
+
+            <p id="q-feedback" class="feedback" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <aside class="column side">
+          <section class="card">
+            <h3>Your on-chain profile</h3>
+            <label class="field">
+              Stacks principal
+              <input id="profile-principal" type="text" placeholder="ST..." />
+            </label>
+            <button id="profile-load">Load stats</button>
+            <dl id="profile-stats" class="stats" aria-live="polite">
+              <div>
+                <dt>Score</dt>
+                <dd id="profile-score">–</dd>
+              </div>
+              <div>
+                <dt>Questions answered</dt>
+                <dd id="profile-answered">–</dd>
+              </div>
+            </dl>
+          </section>
+
+          <section class="card">
+            <h3>Reward pool</h3>
+            <p class="small">STX available to reward correct answers from the contract.</p>
+            <p class="highlight"><span id="pool-balance">–</span> micro-STX</p>
+            <button id="pool-refresh">Refresh</button>
+          </section>
+
+          <section class="card">
+            <h3>What happens on-chain?</h3>
+            <p class="small">
+              Every action in this panel calls a Clarity function:
+            </p>
+            <ul class="small">
+              <li><code>get-question</code> (read-only)</li>
+              <li><code>answer-question</code> (public)</li>
+              <li><code>get-user-stats</code> (read-only)</li>
+              <li><code>get-reward-pool</code> (read-only)</li>
+            </ul>
+          </section>
+        </aside>
+      </section>
+
+      <section class="log-card">
+        <header>
+          <h2>Request / response log</h2>
+          <p class="small">Use this to understand the exact function calls and arguments.</p>
+        </header>
+        <pre id="log" class="log" aria-live="polite"></pre>
+      </section>
+    </main>
+
+    <script src="app.js" type="module"></script>
+  </body>
+</html>
